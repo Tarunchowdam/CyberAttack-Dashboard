@@ -35,40 +35,15 @@ A modern cyber security analytics dashboard built using **React 19**, **TypeScri
   - Clean merged codebase with **no duplicates**
   - High performance structure leveraging strong problem-solving practices
 
----
-
-## 📁 Project Structure
-
-
-cyber-attack-dashboard/
-│── public/
-│   └── cyberattacks.csv
-│── src/
-│   │── pages/
-│   │   ├── Login.tsx
-│   │   ├── Dashboard.tsx
-│   │   ├── MapView.tsx
-│   │   └── TableView.tsx
-│   │── components/
-│   │── api/
-│   │── types/
-│   │── utils/
-│── package.json (React 19 compatible)
-│── tsconfig.json
-│── vite.config.ts
-└── README.md
-
-````
 
 ---
 
 ## 🛠️ Installation & Run
 
-```sh
+sh
 cd cyber-attack-dashboard
 npm install
 npm run dev
-````
 
 ---
 
@@ -101,17 +76,8 @@ This dashboard uses a **local CSV file** to display real attack analytics and si
 ### 👨‍💻 Author
 
 **Chowdam Tarun Kumar**
-B.Tech Computer Science (2025 Graduate)
-Hyderabad, India
+
 
 ```
 
----
-
-If you want, next I can also:
-- Insert this into your ZIP and repackage it
-- Or create more README variants (shorter / more technical)
-
-Just tell me!
-```
 
