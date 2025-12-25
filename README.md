@@ -46,7 +46,7 @@ A modern cyber security analytics dashboard built using **React 19**, **TypeScri
 ![Login Page](screenshots/login.png)
 
 ### Threat Map
-![Threat Map](screenshots/mapview.png)
+![Threat Map](screenshots/MapView.png)
 
 ### Attack Events Table
 ![Attack Events Table](screenshots/tableview.png)
@@ -88,5 +88,6 @@ npm run dev
 ## 👨‍💻 Author
 
 **Chowdam Tarun Kumar**
+
 
 
