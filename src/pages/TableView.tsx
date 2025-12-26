@@ -18,7 +18,6 @@ export default function TableView() {
   const [fSystem, setFSystem] = useState('');
   const [fProtocol, setFProtocol] = useState('');
   const [fSourceIP, setFSourceIP] = useState('');
-  const [fconfidence, setFConfidence] = useState('');
   
   const filtered = useMemo(() =>
     data.filter(d =>

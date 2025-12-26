@@ -1,6 +1,6 @@
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { useAttacksData } from '../api/useAttacksData';
-import { useState } from 'react';
+import { JSX, useState } from 'react';
 import Tooltip from '../components/Tooltip';
 
 export default function MapView() {
