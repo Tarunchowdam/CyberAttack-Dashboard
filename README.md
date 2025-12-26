@@ -4,7 +4,8 @@
 A modern cyber security analytics dashboard built using **React 19**, **TypeScript**, and **Vite 5**, featuring an interactive **SVG world map (TopoJSON → SVG)** and a filterable, paginated attack events table.
 
 ---
-
+#live demo: https://cyber-attack-dashboard.netlify.app/
+---
 ## 🚀 Features
 
 - **Login / Logout Authentication**
