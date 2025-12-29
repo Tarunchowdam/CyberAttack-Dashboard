@@ -19,6 +19,7 @@ export function useAttacksData() {
           AffectedSystem: r['Affected System'] || r.AffectedSystem || r['Affected_System'] || '',
           Protocol: r['Protocol'] || r.Protocol || '',
           SourceIP: r['Source IP'] || r.SourceIP || r['Source_IP'] || '',
+          detection: r['Detection Label'] || '',
           confidence: r['Confidence Score'] ? parseFloat(r['Confidence Score']) : (r.confidence ? parseFloat(r.confidence) : 0),
         }));
         setData(mapped.filter(d => d.Country));

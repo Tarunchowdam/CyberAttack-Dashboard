@@ -25,8 +25,8 @@ export default function MapView() {
     if (t.startsWith('russia')) return 'russia';
     return t;
   }
-  const totalAttacks = data.length;
-  const detectedThreats = data.filter((e) => e.confidence >= 75).length;
+  const totalAttacks = data.length.toLocaleString('en-IN');
+  const detectedThreats = data.filter(e => e.detection.toLowerCase() === "detected").length.toLocaleString('en-IN');
   const countriesAffected = Object.keys(grouped).length;
 
   // normalized grouping
@@ -47,7 +47,7 @@ export default function MapView() {
         </div>
         <div className="card">
           ⚠︎ Detected Threats
-          <div style={{ fontSize: 28, fontWeight: 800, color: 'var(--danger)' }}>45,121</div>
+          <div style={{ fontSize: 28, fontWeight: 800, color: 'var(--danger)' }}>{detectedThreats}</div> {/* 45121 45170*/}
         </div>
         <div className="card">
           🛡 Countries Affected

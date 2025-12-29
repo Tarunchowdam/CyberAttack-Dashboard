@@ -1,5 +1,6 @@
 
 export interface AttackEvent {
+  detection: any;
   Country: string;
   AttackType: string;
   AffectedSystem: string;
