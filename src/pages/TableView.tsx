@@ -7,7 +7,6 @@ export default function TableView() {
   const [pageInput, setPageInput] = useState('');
   const pageSize = 15;
 
-  /* ---------- Filters ---------- */
   const countries = useMemo(() => Array.from(new Set(data.map(d => d.Country).filter(Boolean))), [data]);
   const types = useMemo(() => Array.from(new Set(data.map(d => d.AttackType).filter(Boolean))), [data]);
   const systems = useMemo(() => Array.from(new Set(data.map(d => d.AffectedSystem).filter(Boolean))), [data]);
@@ -19,7 +18,6 @@ export default function TableView() {
   const [fProtocol, setFProtocol] = useState('');
   const [fSourceIP, setFSourceIP] = useState('');
 
-  /* ---------- Filter data ---------- */
   const filtered = useMemo(
     () =>
       data.filter(d =>
@@ -36,7 +34,6 @@ export default function TableView() {
 
   const paged = filtered.slice(page * pageSize, (page + 1) * pageSize);
 
-  /* ---------- Dynamic sliding pagination ---------- */
   const pagination = useMemo(() => {
     const pages: string[] = [];
     const lastPage = totalPages - 1;
@@ -65,13 +62,11 @@ export default function TableView() {
     return pages;
   }, [page, totalPages]);
 
-  /* ---------- Safe page navigation ---------- */
   const goToPage = (p:any) => {
     const safePage = Math.min(Math.max(p, 0), totalPages - 1);
     setPage(safePage);
   };
 
-  /* ---------- Render ---------- */
   return (
     <div>
       {/* Filters */}
@@ -99,7 +94,7 @@ export default function TableView() {
 
       {/* Table */}
       <div style={{ borderRadius: 12, padding: 12, background: 'linear-gradient(180deg,#071421,#061421)', border: '1px solid rgba(255,255,255,0.02)' }}>
-        <div style={{ fontWeight: 700, marginBottom: 12 }}>🔎 Attack Events ({filtered.length})</div>
+        <div style={{ fontWeight: 700, marginBottom: 12 }}>🔎 Attack Events ({filtered.length.toLocaleString('en-IN')})</div>
         <table>
           <thead>
             <tr>

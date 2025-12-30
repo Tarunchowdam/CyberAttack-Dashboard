@@ -56,7 +56,7 @@ export default function MapView() {
       </div>
 
       {/* MAP */}
-      <div className="map-panel">
+      <div className="map-panel" onMouseLeave={() => setTooltip(null)}>
         <div className="map-header">
           <div style={{ fontWeight: 700 }}>🔴 Live Threat Map</div>
           <div className="legend" style={{ display: "flex", gap: 12 }}>
@@ -66,13 +66,13 @@ export default function MapView() {
           </div>
         </div>
 
-        <div style={{ width: "100%",height: 620 }}>
-          <ComposableMap style={{ width: "100%", height: 620 }}>
+        <div style={{ width: "100%",height: 620 }} >
+          <ComposableMap style={{ width: "100%", height: 620 }}  >
             <Geographies geography="https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json">
               {({ geographies }) =>
                 geographies.map((geo) => {
                   const geoName = geo.properties.name || '';
-                  const attacks = normalizedGrouped[normalizeCountry(geoName)] || grouped[geoName];
+                  const attacks = normalizedGrouped[normalizeCountry(geoName)] || grouped[geoName] || [];
 
                   let content: JSX.Element | null = null;
 
@@ -100,14 +100,15 @@ export default function MapView() {
                         <div style={{ marginTop: 8 }}>
                           {Object.entries(byType).map(([type, info]: any, i) => (
                             <div key={i} className="tooltip-row">
-                              <div style={{ maxWidth: 200 }}>{type}</div>
-                              <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                              <div style={{ maxWidth: 180 }}>{type}</div>
+                              <div style={{ display: "grid"}}>
+
                                 <div className="count-pill">{info.count}</div>
                                 <div
                                   style={{
                                     color: 'var(--muted)',
-                                    maxWidth: 160,
-                                    overflow: 'hidden',
+                                    maxWidth: 180,
+                                    // overflow: 'hidden',
                                     textOverflow: 'ellipsis',
                                     whiteSpace: 'nowrap',
                                   }}
@@ -121,9 +122,7 @@ export default function MapView() {
                       </div>
                     );
                   }
-
-                  const hasAttacks = !!attacks?.length;
-
+                  const hasAttacks = attacks && attacks.length > 0;
                   return (
                     <Geography
                       key={geo.rsmKey}
@@ -134,13 +133,25 @@ export default function MapView() {
                             x: e.clientX,
                             y: e.clientY,
                             content,
-                          });
-                        }
-                      }}
-                      onMouseLeave={() => setTooltip(null)}
+                            });
+                          }
+                        }}
+                        
                       style={{
-                        default: { fill: hasAttacks ? '#d9534f' : '#1a2230' },
-                        hover: { fill: hasAttacks ? '#ff5a3c' : '#2b3440' },
+                        default: { fill: (() => {
+                          const count = attacks?.length || 0;
+                          if (count < 1000 && count > 0) return "blue";
+                          if (count >= 1000 && count <= 5000) return "orange";
+                          if (count > 5000) return "red";
+                          return "#1a2230";
+                        })() },
+                        hover: {fill: (() => {
+                          const count = attacks?.length || 0;
+                          if (count < 1000 && count > 0) return "blue";
+                          if (count >= 1000 && count <= 5000) return "orange";
+                          if (count > 5000) return "red";
+                          return "#1a2230";
+                        })() },
                       }}
                     />
                   );
@@ -152,7 +163,7 @@ export default function MapView() {
       </div>
 
       {/* TOOLTIP */}
-      <Tooltip {...tooltip} />
-    </div>
+      <Tooltip {...tooltip} setTooltip={setTooltip} />
+  </div>
   );
 }
