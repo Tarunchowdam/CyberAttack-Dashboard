@@ -29,7 +29,7 @@ export default function MapView() {
   const detectedThreats = data.filter(e => e.detection.toLowerCase() === "detected").length.toLocaleString('en-IN');
   const countriesAffected = Object.keys(grouped).length;
 
-  // normalized grouping
+  // normalized grouping  
   const normalizedGrouped = Object.keys(grouped).reduce((acc: any, c) => {
     const n = normalizeCountry(c);
     acc[n] = acc[n] || [];
