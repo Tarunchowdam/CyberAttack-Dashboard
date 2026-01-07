@@ -57,13 +57,16 @@ export default function MapView() {
 
       {/* MAP */}
       <div className="map-panel" onMouseLeave={() => setTooltip(null)}>
-        <div className="map-header">
+        {/* <div className="map-header">
           <div style={{ fontWeight: 700 }}>🔴 Live Threat Map</div>
           <div className="legend" style={{ display: "flex", gap: 12 }}>
             <span className="legend-pill" style={{ color: "var(--accent)" }}>● &lt;1K</span>
             <span className="legend-pill" style={{ color: "hsl(38,92%,45%)" }}>● 1K–5K</span>
             <span className="legend-pill" style={{ color: "var(--danger)" }}>● &gt;5K</span>
           </div>
+        </div> */}
+        <div className='map-header'>
+          <div style={{ fontWeight: 700 }}>🔴 Live Threat Map</div>
         </div>
 
         <div style={{ width: "100%",height: 620 }} >
