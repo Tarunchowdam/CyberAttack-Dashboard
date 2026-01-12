@@ -100,7 +100,7 @@ export default function TableView() {
         <div style={{ fontWeight: 700, marginBottom: 12 }}>🔎 Attack Events ({filtered.length.toLocaleString('en-IN')})</div>
         <table>
           <thead>
-            <tr>
+            <tr style={{background: 'rgba(255,255,255,0.05)'}}>
               <th>Country</th><th>Attack Type</th><th>Affected System</th><th>Protocol</th><th>Confidence</th><th>Source IP</th>
             </tr>
           </thead>
