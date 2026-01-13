@@ -4,8 +4,31 @@ import { JSX, useState } from 'react';
 import Tooltip from '../components/Tooltip';
 
 export default function MapView() {
-  const data = useAttacksData() || [];
+  const { data, loading, error } = useAttacksData();
   const [tooltip, setTooltip] = useState<any>(null);
+  
+  // Handle loading and error states
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', color: 'white' }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: 24, marginBottom: 12 }}>Loading attack data...</div>
+          <div style={{ opacity: 0.6 }}>Fetching data from server</div>
+        </div>
+      </div>
+    );
+  }
+  
+  if (error) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', color: 'white' }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: 24, marginBottom: 12, color: 'var(--danger)' }}>Error Loading Data</div>
+          <div style={{ opacity: 0.6 }}>{error}</div>
+        </div>
+      </div>
+    );
+  }
 
   // group by country
   const grouped = data.reduce((acc: any, d: any) => {

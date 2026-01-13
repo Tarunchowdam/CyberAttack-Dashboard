@@ -1,9 +1,10 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
 import logging
 import os
 from routes.auth import auth_bp
+from routes.attacks import attacks_bp
 
 load_dotenv()
 
@@ -32,17 +33,26 @@ def create_app():
     
     # Register blueprints
     app.register_blueprint(auth_bp)
+    app.register_blueprint(attacks_bp)
     
     # Root endpoint
     @app.route('/')
     def index():
         return jsonify({
             'message': 'Cyber Attack Dashboard API',
-            'version': '1.0.0',
+            'version': '2.0.0',
             'endpoints': {
-                'register': '/api/register',
-                'login': '/api/login',
-                'health': '/api/health'
+                'authentication': {
+                    'register': '/api/register',
+                    'login': '/api/login',
+                    'health': '/api/health'
+                },
+                'attacks_data': {
+                    'get_all_attacks': '/api/attacks',
+                    'get_summary': '/api/attacks/summary',
+                    'filter_attacks': '/api/attacks/filter',
+                    'get_filter_options': '/api/attacks/stats'
+                }
             }
         }), 200
     
